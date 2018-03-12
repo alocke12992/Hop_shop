@@ -19,11 +19,11 @@ class Api::BeersController < ApplicationController
 
   def update
     if @beer.update(beer_params)
-      render json: @begin
+      render json: @beer
     else 
-      render json: @beer.erros, status 422 
+      render json: @beer.errors, status: 422 
     end 
-  end 
+  end  
 
   def destroy
     @beer.destroy
@@ -31,12 +31,12 @@ class Api::BeersController < ApplicationController
 
   private 
 
-  def set_beer 
-    @beer = Beer.find(params[:id])
-  end 
+    def set_beer 
+      @beer = Beer.find(params[:id])
+    end 
 
-  def beer_params 
-    params.require(:beer).permit(:name, :style, :ibu, :abv)
-  end 
+    def beer_params 
+      params.require(:beer).permit(:name, :style, :ibu, :abv)
+    end 
   
 end

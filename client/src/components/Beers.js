@@ -1,17 +1,38 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { isAuthenticated } from '../fakeAuth';
+import axios from 'axios';
+import { Card } from 'semantic-ui-react'; 
 
-const Beers = () => {
-  if (isAuthenticated()) {
-    return (
-      <div>
-        <h3> You are now logged in </h3>
-      </div>
-    )
-  } else {
-    return <Redirect to="/login" /> 
-  } 
+class Beers extends React.Component {
+  state = { beers: [] }
+
+  componentDidMount() {
+    axios.get('/api/beers') 
+      .then( res => this.setState({ beers: res.data }))
+  }
+  render() {
+    let { beers } = this.state; 
+    if (isAuthenticated()) {
+      return (
+        <Card.Group>
+          { beers.map( b =>
+            <Card key={b.id}>
+              <Card.Content>
+                <Card.Header>{b.name}</Card.Header>
+                <Card.Meta>{b.style}</Card.Meta>
+                <Card.Description>{b.ibu}</Card.Description>
+                <Card.Description>ABV: {b.abv}</Card.Description>
+              </Card.Content>
+            </Card>
+            )
+          }
+        </Card.Group>
+      )
+    } else {
+      return <Redirect to="/login" /> 
+    } 
+  }
 }
 
 export default Beers; 

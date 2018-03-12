@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :beer
+    resources :beers
   end
 
   #Do not place any routes below this one
