@@ -3,8 +3,8 @@ class CreateBeers < ActiveRecord::Migration[5.1]
     create_table :beers do |t|
       t.string :name
       t.string :style
-      t.integer :ibu
-      t.float :abv
+      t.string :ibu
+      t.string :abv
 
       t.timestamps
     end

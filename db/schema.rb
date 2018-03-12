@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20180312210228) do
   create_table "beers", force: :cascade do |t|
     t.string "name"
     t.string "style"
-    t.integer "ibu"
-    t.float "abv"
+    t.string "ibu"
+    t.string "abv"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
