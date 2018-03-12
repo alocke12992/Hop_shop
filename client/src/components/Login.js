@@ -1,15 +1,16 @@
 import React from 'react';
 import { login } from '../fakeAuth';
-
+import { Button } from 'semantic-ui-react'; 
+ 
 const Login = ({ history }) => (
   <div>
-    <h3>Login</h3>
-    <button onClick={ () => {
+    <h3>Sign in to see the goods!</h3>
+    <Button onClick={ () => {
       login()
       history.push('/beers')
     }}>
-    Login
-    </button>
+      Beer Me
+    </Button>
   </div>
 )
 

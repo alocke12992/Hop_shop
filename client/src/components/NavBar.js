@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom';
 import { isAuthenticated, logout } from '../fakeAuth';
+import Form from './Form';
 
 const styles = {
   active: {
@@ -17,8 +18,14 @@ const additionalLinks = (history) => {
         <NavLink 
         activeStyle={styles.active} 
         to="/beers"
-        > beers
+        > Beers
         </NavLink> 
+        {' '}
+        <NavLink
+          activeStyle={styles.active}
+          to="/add"
+        > Add
+        </NavLink>
         {' '}
         <a href="#" onClick={() => {
           logout()
