@@ -1,7 +1,8 @@
 import React from 'react'
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { isAuthenticated, logout } from '../fakeAuth';
 import Form from './Form';
+import { Menu } from 'semantic-ui-react'
 
 const styles = {
   active: {
@@ -11,61 +12,63 @@ const styles = {
   }
 }
 
-const additionalLinks = (history) => {
+const NavBar = ({history}) => {
   if (isAuthenticated()) {
     return (
-      <span>
-        <NavLink 
-        activeStyle={styles.active} 
-        to="/beers"
-        > Beers
-        </NavLink> 
-        {' '}
-        <NavLink
+      <Menu>
+        <Menu.Item
+          exact
           activeStyle={styles.active}
-          to="/add"
+          href="/"
+        >
+          Home
+        </Menu.Item>
+        <Menu.Item 
+        activeStyle={styles.active} 
+        href="/beers"
+        > Beers
+        </Menu.Item> 
+        <Menu.Item
+          activeStyle={styles.active}
+          href="/add"
         > Add
-        </NavLink>
-        {' '}
-        <a href="#" onClick={() => {
+        </Menu.Item>
+        <Menu.Item 
+          href="#" onClick={() => {
           logout()
           history.push("/login")
         }}>
           Logout
-        </a> 
-      </span>
+        </Menu.Item> 
+      </Menu>
     )
   } else {
     return (
-      <NavLink
-        activeStyle={styles.active}
-        to="/login"
-      >
-      Login 
-      </NavLink> 
+      <Menu>
+        <Menu.Item
+          exact
+          activeStyle={styles.active}
+          href="/"
+        >
+          Home
+        </Menu.Item>
+          <Menu.Item
+            exact
+            activeStyle={styles.active}
+            href="/about"
+          >
+            About
+        </Menu.Item>
+        <Menu.Item
+          activeStyle={styles.active}
+          href="/login"
+        >
+          Login
+        </Menu.Item> 
+      </Menu>
     )
   }
 }
-const NavBar = ({ history }) => (
-  <nav>
-    <NavLink 
-      exact 
-      activeStyle={styles.active}
-      to="/"
-    >
-    Home 
-    </NavLink>
-    {' '}
-    <NavLink 
-      exact 
-      activeStyle={styles.active}
-      to="/about"
-    >
-    About 
-    </NavLink> 
-    {' '}
-    {additionalLinks(history)}
-  </nav>
-)
+
 
 export default withRouter(NavBar); 
