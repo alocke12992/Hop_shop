@@ -11,14 +11,16 @@ import Add from './components/Add';
 import { Container } from 'semantic-ui-react'
 import ProtectedRoute from './components/ProtectedRoute'
 /* TODO 
-  - Add beer form 
+
   - Add show form to Beer list 
   - Edit Beers from show
   - Delete Beers from show
-
+*/ 
 const App = () => (
   <div>
-    <NavBar />
+    <Container>
+      <NavBar />  
+    </Container>
     <Container>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -32,5 +34,7 @@ const App = () => (
     </Container>
   </div>
 )
+
+
 
 export default App;

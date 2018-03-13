@@ -4,6 +4,7 @@ import { isAuthenticated } from '../fakeAuth';
 import axios from 'axios';
 import { Card } from 'semantic-ui-react'; 
 
+
 class Beers extends React.Component {
   state = { beers: [] }
 

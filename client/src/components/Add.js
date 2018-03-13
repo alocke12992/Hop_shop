@@ -6,16 +6,30 @@ import { Card } from 'semantic-ui-react';
 import Form from "./Form";
 
 class Add extends React.Component {
-
-  state = { showForm: true }
   
+  state = { beer: [] }
+  
+  componentDidMount() {
+    axios.get('/api/beers')
+      .then(res => this.setState({ beers: res.data }))
+  }
+
   form() {
     return <Form submit={this.submit} />
   }
 
+  submit = (beer) => {
+    let { beers } = this.state
+    axios.post('/api/beers', { beer })
+      .then(res => this.setState({ beers: [ res.data, ...beers ]}))
+  } 
+
   render() {
     return(
-        <h1>Form</h1>
+      <div>
+        <h2>Add New Beer</h2>
+        {this.form()}
+      </div>
     )
   }
 
