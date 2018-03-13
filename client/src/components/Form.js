@@ -8,6 +8,10 @@ class Form extends React.Component {
   defaultValues = { name: '', style: '', ibu: '', abv: '' }
   state = { ...this.defaultValues, fireRedirect: false  }
 
+  componentDidMount() {
+    if (this.props.id)
+      this.setState({...this.props})
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     let beer = { ...this.state }

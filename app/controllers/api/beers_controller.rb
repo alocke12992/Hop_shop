@@ -13,7 +13,7 @@ class Api::BeersController < ApplicationController
     if beer.save 
       render json: beer 
     else 
-      render json: beer.errors, status: 422 
+      render json: {erros: @api_beer.errors.full_message.join(',')}, status: :unprocessable_entity
     end 
   end
 

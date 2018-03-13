@@ -21,7 +21,8 @@ class Add extends React.Component {
   submit = (beer) => {
     let { beers } = this.state
     axios.post('/api/beers', { beer })
-      .then(res => this.setState({ beers: [ res.data, ...beers ]}))
+      .then(res => this.setState({ beers: [{...res.data}, ...beers ]}))
+      .catch( e => console.log(e.response.data.errors))
   } 
 
   render() {

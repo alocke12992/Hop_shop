@@ -12,6 +12,7 @@ class Beers extends React.Component {
     axios.get('/api/beers') 
       .then( res => this.setState({ beers: res.data }))
   }
+
   render() {
     let { beers } = this.state;
     return (
